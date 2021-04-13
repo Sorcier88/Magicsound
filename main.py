@@ -39,7 +39,7 @@ async def on_message(message):
         #await message.channel.send(random.choice(EngineerTF2.quotes))
 
     # monitor for the command character
-    elif message.content.startswith('|'):
+    elif message.content.startswith('$'):
         
         #this chunk sets up the the file path of a potential sound
         path = pathCheck(message.content)
@@ -59,17 +59,18 @@ async def on_message(message):
                 await message.channel.send("Spy sappin the voice channel!")
         
         # the stuff that handles bringing up the help thing
-        elif message.content.startswith("|help"):
-            quotesReadable = {('|' + x.replace(".wav", "")) for x in bot.voiceQuotes}
-            quotesPrint = ""
+        elif message.content.startswith("$help"):
+            quotesReadableA = {('$' + x.replace(".wav", "")) for x in bot.voiceQuotes}
+            quotesReadable = {(x.replace(".mp3", "")) for x in quotesReadableA}
+            quotesPrint = "Tapez ces commandes pour obtenir de la joie" + '\n' + '\n'
             for x in quotesReadable:
-                quotesPrint += x + '\n'
+                quotesPrint += x + '\t'
             await message.channel.send(quotesPrint)
 
         # if the file path isnt a a real file    
         else:
             print("File not found")
-            await message.channel.send("Sound file Not Found")
+            await message.channel.send("M'enfin je connais pas")
             
         
     #gotta return something or else I feel weird
