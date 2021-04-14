@@ -70,7 +70,7 @@ async def on_message(message):
         # if the file path isnt a a real file    
         else:
             print("File not found")
-            await message.channel.send("M'enfin je connais pas")
+            await message.channel.send("Arrête de dire de la merde!" + "\n" + "D'ailleurs t'es qu'une merde. Comme TOUS les humains !")
             
         
     #gotta return something or else I feel weird
@@ -78,8 +78,13 @@ async def on_message(message):
 
 
 async def voiceHandler(filepath, author):
-    # gets a VoiceConnection(VoiceProtocall  ) object from connecting to a voice channel
+
+    #if author.voice.channel.is_connected() == False
+      # gets a VoiceConnection(VoiceProtocall  ) object from connecting to a voice channel
     VP = await author.voice.channel.connect()
+
+    #else
+    
 
     # plays the file and checks for when it's finnished
     VP.play(discord.FFmpegOpusAudio(filepath))
